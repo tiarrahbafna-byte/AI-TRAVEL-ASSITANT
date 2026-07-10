@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RoamAI — Premium Travel Assistant</title>
+    <!-- Google Fonts: Inter for Apple/Airbnb style typography -->
+    <link rel="preconnect" href="https://googleapis.com">
+    <link rel="preconnect" href="https://gstatic.com" crossorigin>
+    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- DESIGN SYSTEM & VARIABLES --- */
+        :root {
+            --bg-global: #f5f5f7;          /* Apple light gray background */
+            --surface: #ffffff;            /* Pure white for cards */
+            --text-main: #1d1d1f;          /* Apple dark charcoal */
+            --text-muted: #86868b;         /* Apple muted gray */
+            --accent: #ff385c;             /* Airbnb Magenta/Pink */
+            --accent-light: #fff0f3;       /* Light pink tint */
+            --border: #e2e2e7;             /* Soft border color */
+            --radius-lg: 20px;
+            --radius-md: 12px;
+            --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+            --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        /* --- BASIC RESET --- */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: var(--font-sans);
+            -webkit-font-smoothing: antialiased;
+        }
+
+        body {
+            background-color: var(--bg-global);
+            color: var(--text-main);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            height: 100dvh; /* Dynamic viewport height for mobile browsers */
+            padding: 20px;
+        }
+
+        /* --- MAIN APP CONTAINER --- */
+        .app-container {
+            width: 100%;
+            max-width: 1100px;
+            height: 85vh;
+            background: var(--surface);
+            border-radius: var(--radius-lg);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.04);
+            border: 1px solid var(--border);
+            display: grid;
+            grid-template-columns: 280px 1fr;
+            overflow: hidden;
+            transition: var(--transition);
+        }
+
+        /* --- SIDEBAR (AIRBNB/GOOGLE INSPIRED) --- */
+        .sidebar {
+            background-color: #fafafa;
+            border-right: 1px solid var(--border);
+            padding: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-weight: 700;
+            font-size: 1.2rem;
+            letter-spacing: -0.5px;
+            color: var(--text-main);
+        }
+
+        .brand span {
+            color: var(--accent);
+        }
+
+        .new-chat-btn {
+            background: var(--surface);
+            border: 1px solid var(--border);
+            padding: 12px;
+            border-radius: var(--radius-md);
+            font-weight: 500;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: var(--transition);
+        }
+
+        .new-chat-btn:hover {
+            background: #f5f5f7;
+            border-color: var(--text-muted);
+        }
+
+        .suggestions-title {
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--text-muted);
+            font-weight: 600;
+            margin-top: 10px;
+        }
+
+        .suggestions-list {
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+            list-style: none;
+        }
+
+        .suggestion-item {
+            padding: 10px 12px;
+            border-radius: var(--radius-md);
+            font-size: 0.9rem;
+            color: #424245;
+            cursor: pointer;
+            transition: var(--transition);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .suggestion-item:hover {
+            background-color: #f0f0f3;
+            color: var(--text-main);
+        }
+
+        /* --- CHAT AREA --- */
+        .chat-area {
+            display: flex;
+            flex-direction: column;
+            background: var(--surface);
+            position: relative;
+        }
+
+        /* Chat Header */
+        .chat-header {
+            padding: 20px 32px;
+            border-bottom: 1px solid var(--border);
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+
+        .agent-info {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, var(--accent), #ff6b8b);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .agent-name {
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        .agent-status {
+            font-size: 0.8rem;
+            color: var(--text-muted);
+            display: flex;
+            align-items: center;
+            gap: 4px;
+        }
+
+        .agent-status::before {
+            content: '';
+            display: inline-block;
+            width: 6px;
+            height: 6px;
+            background-color: #34c759; /* Apple Green */
+            border-radius: 50%;
+        }
+
+        /* Messages Window */
+        .messages-container {
+            flex: 1;
+            padding: 32px;
+            overflow-y: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 24px;
+            scroll-behavior: smooth;
+        }
+
+        .message {
+            display: flex;
+            gap: 16px;
+            max-width: 80%;
+            animation: fadeIn 0.4s ease forwards;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .message.user {
+            align-self: flex-end;
+            flex-direction: row-reverse;
+        }
+
+        .
