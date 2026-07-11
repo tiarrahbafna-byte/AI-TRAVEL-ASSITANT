@@ -3,160 +3,114 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AI Travel Assistant - Plan your perfect journey with personalized itineraries, smart recommendations, and live AI chatting.">
-    <title>AI Travel Assistant | Plan Your Perfect Journey</title>
-    <!-- Google Fonts & Font Awesome Icons -->
+    <title>AI Travel Assistant — Your Intelligent Journey Planner</title>
+    <!-- Inter Font Family for Apple/Linear Tech Aesthetics -->
     <link rel="preconnect" href="https://googleapis.com">
     <link rel="preconnect" href="https://gstatic.com" crossorigin>
-    <link href="https://googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cloudflare.com">
+    <link href="https://googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <!-- Link Core Premium Stylesheet -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
-    <!-- Dynamic Header & Navbar -->
-    <header class="navbar">
-        <div class="nav-container">
-            <a href="#" class="logo">
-                <i class="fa-solid fa-compass icon-spin"></i>
-                <span>RoamAI</span>
-            </a>
-            <nav class="nav-menu" id="navMenu">
-                <a href="#" class="nav-link active">Home</a>
-                <a href="#features" class="nav-link">Features</a>
-                <a href="#destinations" class="nav-link">Destinations</a>
-                <a href="#planner" class="nav-link">Planner</a>
-                <a href="#chatbot" class="nav-link">AI Chat</a>
-                <a href="#faq" class="nav-link">FAQ</a>
-            </nav>
-            <div class="nav-actions">
-                <button class="theme-toggle" id="themeToggle" aria-label="Toggle dark mode">
-                    <i class="fa-solid fa-moon"></i>
-                </button>
-                <a href="#planner" class="btn btn-primary nav-btn">Get Started</a>
-                <button class="hamburger" id="hamburger" aria-label="Toggle menu">
-                    <i class="fa-solid fa-bars"></i>
+    <div class="app-workspace">
+        
+        <!-- --- APP SIDEBAR PANEL --- -->
+        <aside class="app-sidebar" id="app-sidebar">
+            <div class="sidebar-header">
+                <div class="brand-title">AI Travel Assistant</div>
+                <!-- Mini Mobile Sidebar Close Asset -->
+                <button class="icon-btn-toggle" id="sidebar-close-btn" style="display: none;" aria-label="Close sidebar">✕</button>
+            </div>
+            
+            <!-- Quick Command Section -->
+            <div class="sidebar-actions" style="margin-bottom: 2rem;">
+                <button class="action-btn-primary" id="new-chat-btn" style="width: 100%;">
+                    <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2" fill="none" style="margin-right: 4px;"><line x1="12" y1="5" x2="12" y2="19"/><line x1="5" y1="12" x2="19" y2="12"/></svg>
+                    New Workspace Session
                 </button>
             </div>
-        </div>
-    </header>
 
-    <main>
-        <!-- Hero Section -->
-        <section class="hero-section">
-            <div class="hero-bg-gradients">
-                <div class="gradient-blob blob-1"></div>
-                <div class="gradient-blob blob-2"></div>
-            </div>
-            <div class="container hero-container">
-                <div class="hero-content">
-                    <div class="badge fade-in">✨ Next-Gen AI Travel Co-Pilot</div>
-                    <h1 class="fade-in">Plan Your Perfect Journey with AI</h1>
-                    <p class="fade-in">Discover destinations, create custom itineraries, find attractions, local restaurants, and hidden travel gems instantly using intelligent data mapping.</p>
-                    <div class="hero-buttons fade-in">
-                        <a href="#planner" class="btn btn-primary btn-ripple">Start Planning <i class="fa-solid fa-arrow-right"></i></a>
-                        <a href="#destinations" class="btn btn-secondary">Explore Destinations</a>
-                    </div>
-                    <div class="hero-stats fade-in">
-                        <div class="stat-item"><span class="stat-num" data-val="150">0</span><span>+ Countries</span></div>
-                        <div class="stat-item"><span class="stat-num" data-val="25">0</span><span>k+ Trips Planned</span></div>
-                        <div class="stat-item"><span class="stat-num" data-val="4.9">0</span><span>/5 User Rating</span></div>
+            <!-- Features Quick Information Display (Linear/Stripe Style) -->
+            <div class="sidebar-features-list" style="display: flex; flex-direction: column; gap: 1rem; margin-top: auto;">
+                <div class="mini-feature-row" style="display: flex; gap: 0.75rem; align-items: start; font-size: 0.85rem;">
+                    <span style="font-size: 1.1rem;">✈️</span>
+                    <div>
+                        <strong style="display: block; color: var(--text-main);">Smart Planners</strong>
+                        <span style="color: var(--text-muted);">Generate comprehensive timelines dynamically.</span>
                     </div>
                 </div>
-                <div class="hero-visual fade-in">
-                    <div class="glass-globe-card">
-                        <div class="globe-icon-wrapper">
-                            <i class="fa-solid fa-earth-americas floating-globe"></i>
-                        </div>
-                        <div class="live-clock-widget">
-                            <i class="fa-regular fa-clock"></i> <span id="liveClock">00:00:00 AM</span>
-                        </div>
+                <div class="mini-feature-row" style="display: flex; gap: 0.75rem; align-items: start; font-size: 0.85rem;">
+                    <span style="font-size: 1.1rem;">🎙️</span>
+                    <div>
+                        <strong style="display: block; color: var(--text-main);">Voice Control</strong>
+                        <span style="color: var(--text-muted);">Hands-free itinerary streaming support.</span>
                     </div>
                 </div>
             </div>
-        </section>
+        </aside>
 
-        <!-- AI Core Features Section -->
-        <section id="features" class="features-section section-padding">
-            <div class="container">
-                <div class="section-header">
-                    <h2>Engineered for Seamless Exploration</h2>
-                    <p>Unlock the power of dynamic algorithms designed to curate bespoke travel logistics in seconds.</p>
-                </div>
-                <div class="grid-features">
-                    <div class="feature-card">
-                        <div class="feat-icon"><i class="fa-solid fa-plane-departure"></i></div>
-                        <h3>Personalized Trip Planner</h3>
-                        <p>Tailored logic maps based exclusively on your distinct personal travel parameters and pacing choices.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feat-icon"><i class="fa-solid fa-map-location-dot"></i></div>
-                        <h3>Smart Itinerary Generator</h3>
-                        <p>Sequenced day-by-day routing that groups geo-proximate hotspots cleanly together to eliminate transit waste.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feat-icon"><i class="fa-solid fa-cloud-sun"></i></div>
-                        <h3>Weather Suggestions</h3>
-                        <p>Dynamic historical checks protecting your outdoor plans against unwanted atmospheric disruptions.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feat-icon"><i class="fa-solid fa-utensils"></i></div>
-                        <h3>Restaurant Finder</h3>
-                        <p>Gourmet mapping from top high-rated local street culinary spots to modern fine-dining tables.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feat-icon"><i class="fa-solid fa-hotel"></i></div>
-                        <h3>Hotel Matchmaker</h3>
-                        <p>Locational matching aligning verified partner lodging choices directly with your target area grids.</p>
-                    </div>
-                    <div class="feature-card">
-                        <div class="feat-icon"><i class="fa-solid fa-wallet"></i></div>
-                        <h3>Budget Optimizers</h3>
-                        <p>Cost breakdowns tracking accurate projections across global lifestyle tiers seamlessly.</p>
+        <!-- --- MAIN CHAT WINDOW CONTAINER --- -->
+        <main class="chat-window-main">
+            
+            <!-- Top Dashboard Bar -->
+            <header class="chat-navbar">
+                <div class="nav-brand-group" style="display: flex; align-items: center; gap: 1rem;">
+                    <!-- Hamburger Menu for Mobile Drawers -->
+                    <button class="icon-btn-toggle" id="sidebar-toggle" aria-label="Toggle Navigation">
+                        <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="18" x2="21" y2="18"/></svg>
+                    </button>
+                    <div class="navbar-title-context">
+                        <h2 style="font-size: 1rem; font-weight: 600;">Global Assistant Node</h2>
                     </div>
                 </div>
+                
+                <div class="nav-actions">
+                    <!-- Glassmorphism Theme Switching Control -->
+                    <button class="icon-btn-toggle" id="theme-toggle" aria-label="Switch Dark/Light Interface Mode">
+                        <!-- Default Moon Graphic Generated via CSS Overrides Injection -->
+                    </button>
+                </div>
+            </header>
+
+            <!-- Dynamic Conversation Feed Stream Window -->
+            <div class="chat-messages-scroll" id="chat-messages-container">
+                <!-- Chat bubbles will automatically inject here via application script layer -->
             </div>
-        </section>
 
-        <!-- Interactive Dynamic Trip Planner Section -->
-        <section id="planner" class="planner-section section-padding">
-            <div class="container">
-                <div class="planner-wrapper">
-                    <div class="planner-form-side">
-                        <h2>Build Your Next Adventure</h2>
-                        <p>Enter your configuration parameters below to process a sample dynamic travel blueprint layout.</p>
-                        <form id="tripPlannerForm" class="planner-form">
-                            <div class="form-group">
-                                <label for="planDest"><i class="fa-solid fa-location-dot"></i> Destination Where-to</label>
-                                <input type="text" id="planDest" placeholder="e.g., Tokyo, Paris, Maui" required>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="planDays"><i class="fa-solid fa-calendar-days"></i> Duration (Days)</label>
-                                    <input type="number" id="planDays" min="1" max="14" value="3" required>
-                                    <span class="input-hint">Max 14 days</span>
-                                </div>
-                                <div class="form-group">
-                                    <label for="planTravelers"><i class="fa-solid fa-users"></i> Travelers Group Size</label>
-                                    <input type="number" id="planTravelers" min="1" max="20" value="1" required>
-                                </div>
-                            </div>
-                            <div class="form-row">
-                                <div class="form-group">
-                                    <label for="planBudget"><i class="fa-solid fa-money-bill-wave"></i> Budget Allocation</label>
-                                    <select id="planBudget">
-                                        <option value="Backpacker Value">Backpacker Value ($)</option>
-                                        <option value="Moderate Balanced" selected>Moderate Balanced ($$)</option>
-                                        <option value="Ultra Premium Luxury">Ultra Premium Luxury ($$$)</option>
-                                    </select>
-                                </div>
-                                <div class="form-group">
-                                    <label for="planStyle"><i class="fa-solid fa-compass"></i> Preferred Travel Style</label>
-                                    <select id="planStyle">
-                                        <option value="Relaxed & Leisured">Relaxed & Leisured</option>
-                                        <option value="High-Octane Adventure" selected>High-Octane Adventure</option>
-                                        <option value="Deep Cultural Immersion">Deep Cultural Immersion</option>
-                                        <option value="Family & Child Friendly">Family & Child Friendly</option>
-                                    </select>
-                                </div>
-                            </div>
+            <!-- Bottom Console Input Hub & Chips Actions -->
+            <footer class="chat-footer-controls">
+                
+                <!-- Quick Navigation Action Shortcut Chips Container -->
+                <div class="suggestion-chips-wrapper">
+                    <button class="suggestion-chip">✨ Plan a 5-day trip to Japan</button>
+                    <button class="suggestion-chip">🏖️ Best beaches in Bali</button>
+                    <button class="suggestion-chip">🎒 Budget trip to Paris</button>
+                    <button class="suggestion-chip">🏨 Find Luxury Hotels</button>
+                    <button class="suggestion-chip">✈️ Check Flight Matrix</button>
+                </div>
+
+                <!-- Input Console Command Node -->
+                <div class="input-console-frame">
+                    <input type="text" id="chat-input-field" placeholder="Ask AI to plan a trip, draft an itinerary, or find restaurants..." autocomplete="off">
+                    
+                    <div class="console-action-buttons">
+                        <!-- Microphone Vocal Control Asset -->
+                        <button class="console-btn" id="chat-voice-btn" title="Speak to your Assistant">
+                            <svg viewBox="0 0 24 24" width="18" height="18" stroke="currentColor" stroke-width="2" fill="none"><path d="M12 1v10a3 3 0 0 0 3-3V4a3 3 0 0 0-3-3z"/><path d="M19 10v1a7 7 0 0 1-14 0v-1"/><line x1="12" y1="19" x2="12" y2="23"/></svg>
+                        </button>
+                        <!-- Transmission Button -->
+                        <button class="console-btn" id="chat-send-btn" title="Transmit Prompt Message">
+                            <svg viewBox="0 0 24 24" width="16" height="16" stroke="currentColor" stroke-width="2.5" fill="none"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+                        </button>
+                    </div>
+                </div>
+            </footer>
+
+        </main>
+    </div>
+
+    <!-- Inject Core Application Control Logics -->
+    <script src="script.js"></script>
+</body>
+</html>
